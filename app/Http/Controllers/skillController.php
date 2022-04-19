@@ -19,10 +19,35 @@ class skillController extends Controller
         return view('children.tambahSkill');
     }
 
-    public function listHero()
+    public function removeskill($hero, $skill)
+    {
+        $skill = Skill::find($skill);
+        $anggota = Anggota::find($hero);
+        $anggota->skills()->detach($skill);
+
+        return redirect('/skill');
+    }
+
+    public function updateskill(Request $request, $id)
+    {
+        $validate = $request->validate([
+            'idHero' => 'required'
+        ]);
+        $idhero = $request->idHero;
+        $anggota = Anggota::find($idhero);
+        $skill = Skill::find($id);
+        $anggota->skills()->attach($skill);
+    
+        return redirect ('/skill');
+    }
+
+    public function listHero($id)
     {
         $lists = Anggota::get();
-        return view('children.tambahSkillHero', compact('lists'));
+        return view('children.tambahSkillHero',[
+            'lists' => $lists,
+            'idskill' => $id,
+        ]);
     }
 
     public function index()
@@ -65,7 +90,7 @@ class skillController extends Controller
     public function show($id)
     {
         $skill = Skill::where('id',$id)->first();
-        return view ('children.detailSkill', ['skill' => $skill]);
+        return view ('children.detailSkill', ['skill' => $skill, 'idskill' => $id]);
     }
 
     /**

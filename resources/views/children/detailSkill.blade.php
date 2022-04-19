@@ -27,14 +27,16 @@
                       <tr>
                         <th>No</td>
                         <th>Nama superhero</th>
-                        <th><a href="/skill/tambah/hero" class="btn btn-primary">Tambah superhero</a></th>
+                        <th><a href="/skill/tambah/hero/{{$skill->id}}" class="btn btn-primary">Tambah superhero</a></th>
                     </tr>
+                    @foreach ($skill->anggota as $anggota)
                     <tr>
-                        <td>1</td>
-                        <td>Batman</td>
-                        <td><a href="#" class="btn btn-danger">Hapus</a></td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$anggota->name}}</td>
+                        <td><a href="/remove/{{$anggota->id}}/{{$skill->id}}" class="btn btn-danger">Hapus</a></td>
                     </tr>
-                    </tbody>
+                    @endforeach
+                  </tbody>
                   </table>
             </div>
         </div>

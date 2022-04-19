@@ -3,19 +3,19 @@
     <div class="container mx-auto mt-5">
        <div class="row">
            <div class="col-md-8">
-               <form action="/skill" method="POST">
+               <form action="/skill/tambah/hero/{{$idskill}}" method="POST">
                 @csrf
                    <div class="mb-3">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" name="idHero">
                         @foreach ($lists as $list)
-                        <option value="{{$list->name}}">{{$list->name}}</option>
+                        <option value="{{$list->id}}">{{$list->name}}</option>
                         @endforeach
                       </select>
                    </div>
                     <button type="submit" class="btn btn-primary">Tambah superhero</button>
                     <a href="/" class="btn btn-primary">Kembali</a>
                </form>
-           </div>
+            </div>
        </div>
     </div>
 @endsection

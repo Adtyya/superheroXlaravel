@@ -20,6 +20,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Name</th>
                         <th scope="col">Jenis kelamin</th>
+                        <th scope="col">Skill</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
@@ -29,6 +30,11 @@
                         <th scope="row">{{$loop->iteration}}</th>
                         <td>{{$list->name}}</td>
                         <td>{{$list->jkelamin}}</td>
+                        <td>
+                          @foreach($list->skills as $skill)
+                          <p>{{$skill->name}}</p>
+                          @endforeach
+                        </td>
                         <td class="d-flex flex-row">
                             <a href="/list/{{$list->id}}" class="btn btn-primary mx-2">View detail</a>
                             <form action="/list/{{$list->id}}" method="POST">

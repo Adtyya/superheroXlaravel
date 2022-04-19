@@ -40,14 +40,16 @@
                       <tr>
                         <th>No</td>
                         <th>Nama skill</th>
-                        <th><a href="#" class="btn btn-primary">Tambah skill</a></th>
+                        <th><a href="/skill" class="btn btn-primary">Tambah skill</a></th>
                     </tr>
+                    @foreach($detail->skills as $skill)
                     <tr>
-                        <td>1</td>
-                        <td>Terbang</td>
-                        <td><a href="#" class="btn btn-danger">Hapus</a></td>
+                        <td>{{$loop->iteration}}</td>
+                        <td>{{$skill->name}}</td>
+                        <td><a href="/remove/{{$detail->id}}/{{$skill->id}}" class="btn btn-danger">Hapus</a></td>
                     </tr>
-                    </tbody>
+                    @endforeach
+                  </tbody>
                   </table>
             </div>
         </div>

@@ -60,9 +60,8 @@ class handleAnggota extends Controller
 
         $anggota->save();
 
-        $skill = Skill::find([1,2]);
-        $anggota->skills()->attach($skill);
-        // Anggota::create($validate);
+        // $skill = Skill::find([1,2]);
+        // $anggota->skills()->attach($skill);
         return redirect('/');
     }
 
