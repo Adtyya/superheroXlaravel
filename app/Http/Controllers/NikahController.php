@@ -3,82 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Anggota;
+use App\Models\Skill;
 
 class NikahController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $skillanak;
+
     public function index()
     {
-        //
+        $anggota = Anggota::get();
+        $skill = $this->skillanak;
+        return view('children.menikah', ['anggota' => $anggota, 'skillanak' => $skill]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show(Request $request)
     {
-        //
-    }
+        $idL = $request->idHeroLaki;
+        $idP = $request->idHeroIstri;
+        $skillSuami = Skill::find('anggota_id', $idL);
+        $skillIstri = Skill::find('anggota_id', $idP);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $merge = array_merge($skillSuami->toArray(), $skillIstri->toArray());
+        $this->skillanak = $merge;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect('/menikah');
     }
 }

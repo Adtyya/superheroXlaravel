@@ -14,6 +14,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-5">
+                  <a href="/downloadpdfhero" class="btn btn-primary">Download PDF</a>
+                </div>
                 <table class="table table-bordered">
                     <thead>
                       <tr>

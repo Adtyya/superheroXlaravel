@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Anggota;
 use App\Models\Skill;
+use Barryvdh\DomPDF\Facade\Pdf;
+
 
 class handleAnggota extends Controller
 {
@@ -19,6 +21,13 @@ class handleAnggota extends Controller
         return view('children.listHero', compact('lists'));
     }
     
+    public function cetakpdf()
+    {
+        $lists = Anggota::all();
+        $pdf = PDF::loadview('pdf.list');
+        return $pdf->download('listhero');
+    }
+
     public function index()
     {
         return view('children.tambahAnggota');
